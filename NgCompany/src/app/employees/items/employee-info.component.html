@@ -1,0 +1,33 @@
+<div class="w-100">
+    <div class="group">
+        <p class="label bg-primary p-1">Имя</p>
+        <p class="p-1">{{(employee$ | async)?.firstName}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Отчуство</p>
+        <p class="p-1">{{(employee$ | async)?.middleName}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Фамилия</p>
+        <p class="p-1">{{(employee$ | async)?.lastName}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Должность</p>
+        <p class="p-1">{{(employee$ | async)?.position}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Нанят</p>
+        <p class="p-1">{{(employee$ | async)?.hiredAt}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Дата Создания</p>
+        <p class="p-1">{{(employee$ | async)?.createdAt}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Дата изменения</p>
+        <p class="p-1">{{(employee$ | async)?.changedAt}}</p>
+    </div>
+    <div class="group">
+        <p class="btn btn-danger p-2" (click)="OnCloseClick(true)">Закрыть детали</p>
+    </div>
+</div>

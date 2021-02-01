@@ -1,0 +1,64 @@
+<div class="w-75" style="margin: 0px auto">
+    <h4 *ngIf="isUpdateMode" class="mb-5">Форма изменения сотрудника</h4>
+    <h4 *ngIf="!isUpdateMode" class="mb-5">Форма создания сотрудника</h4>
+    <div>
+        <form (ngSubmit)="onSubmit(employeeEditorForm)" #employeeEditorForm="ngForm">
+            <div class="grid employee-form">
+                <div class="lab" style="vertical-align: middle;"><label>Имя:</label></div>
+                <div class="group m-0">
+                    <input class="w-100" type="text" [(ngModel)]="employee.firstName" name="firstName" #firstName="ngModel" required maxlength="40" placeholder="Введите имя">
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                        <p *ngIf="firstName.errors.required">First Name is required.</p>
+                    </div>
+                </div>
+
+                <div class="lab"><label>Отчество:</label></div>
+                <div class="group">
+                    <input class="w-100" type="text" [(ngModel)]="employee.middleName" name="middleName" #middleName="ngModel" required maxlength="40" placeholder="Введите отчество">
+                    <div *ngIf="middleName.invalid && (middleName.dirty || middleName.touched)" class="alert alert-danger">
+                        <p *ngIf="middleName.errors.required">Middle Name is required.</p>
+                    </div>
+                </div>
+
+                <div class="lab"><label>Фамилия:</label></div>
+                <div class="group">
+                    <input class="w-100" type="text" [(ngModel)]="employee.lastName" name="lastName" #lastName="ngModel" required maxlength="40" placeholder="Введите фамилию">
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                        <p *ngIf="lastName.errors.required">Last Name is required.</p>
+                    </div>
+                </div>
+
+                <div class="lab"><label>Должность:</label></div>
+                <div class="group">
+                    <input class="w-100" type="text" [(ngModel)]="employee.position" name="position" #position="ngModel" required maxlength="40" placeholder="Введите должность">
+                    <div *ngIf="position.invalid && (position.dirty || position.touched)" class="alert alert-danger">
+                        <p *ngIf="position.errors.required">Position is required.</p>
+                    </div>
+                </div>
+
+                <div class="lab"><label>Дата принятия:</label></div>
+                <div class="group">
+                    <input class="w-100" type="date" [(ngModel)]="employee.hiredAt" name="hiredAt" #hiredAt="ngModel">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100 mt-2">
+                <span *ngIf="isUpdateMode">Обновить</span><span *ngIf="!isUpdateMode">Сохранить</span>
+            </button>
+            <button *ngIf="isUpdateMode" type="button" class="btn btn-danger w-100 mt-10" (click)="onDelete()">
+                Удалить
+            </button>
+            <button type="button" class="btn btn-green w-100 mt-10" (click)="onCancel()">
+                Назад
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .employee-form {
+        grid-template-areas: "lab group" "lab group" "lab group" "lab group" "lab group";
+        grid-template-columns: 20% 80%;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+</style>

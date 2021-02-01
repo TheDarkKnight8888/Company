@@ -1,0 +1,17 @@
+<div class="w-100">
+    <div class="group">
+        <p class="label bg-primary p-1">Название</p>
+        <p class="p-1">{{(department$ | async)?.name}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Дата Создания</p>
+        <p class="p-1">{{(department$ | async)?.createdAt}}</p>
+    </div>
+    <div class="group">
+        <p class="label bg-primary p-1">Дата изменения</p>
+        <p class="p-1">{{(department$ | async)?.changedAt}}</p>
+    </div>
+    <div class="group">
+        <p class="btn btn-danger p-2" (click)="OnCloseClick(true)">Закрыть детали</p>
+    </div>
+</div>

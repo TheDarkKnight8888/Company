@@ -1,0 +1,77 @@
+<div class="grid two-col">
+    <div class="mr-5 form1">
+        <h4 *ngIf="!isUpdateMode">Форма добавения отдела</h4>
+        <h4 *ngIf="isUpdateMode">Форма редактирования отдела</h4>
+        <form (ngSubmit)="onSubmit(departmentEditorForm)" #departmentEditorForm="ngForm">
+            <div class="grid department-form">
+                <div><label>Название: </label></div>
+                <div class="group">
+                    <input class="w-100" type="text" [(ngModel)]="department.name" name="name" #name="ngModel" required maxlength="40" placeholder="Введите название отдела">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        <div *ngIf="name.errors.required">Name is required.</div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning w-100 mt-10" [disabled]="(!isUpdateMode && isSubmited)">
+                <span *ngIf="isUpdateMode">Обновить</span> <span *ngIf="!isUpdateMode">Сохранить</span>
+            </button>
+            <button type="button" class="btn btn-danger w-100 mt-10" *ngIf="isUpdateMode" (click)="onDelete()">
+                Delete
+            </button>
+            <button type="button" class="btn btn-green w-100 mt-10" (click)="onCancel()">
+                Назад
+            </button>
+        </form>
+    </div>
+    <div class="list1">
+        <div class="mb-5" *ngIf="isUpdateMode">
+            <h4>Список свободных сотрудиков</h4>
+            <app-employee-list [isUpdated]="false" [list$]="freeStaff$" (itemClick)="onFreeEmployeeClick($event)"></app-employee-list>
+        </div>
+    </div>
+    <div class="list2">
+        <div *ngIf="isUpdateMode">
+            <h4>Список сотрудиков отдела</h4>
+            <app-employee-list [isUpdated]="false" [list$]="busyEmployees$" (itemClick)="onBusyEmployeeClick($event)"></app-employee-list>
+        </div>
+    </div>
+    <div class="form2">
+        <p class="m-3"><label>*Нажмите на пункт сводобных сотрудиков, чтобы добавить его в отдел.</label></p>
+        <p><label>**Нажмите на пункт сотрудиков отдела, чтобы удалить его из отдела.</label></p>
+    </div>
+
+
+
+
+
+</div>
+
+
+<style>
+    .two-col {
+        grid-template-areas: "form1 list1" "form2 list2";
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 260px 260px;
+    }
+    
+    .department-form {
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 1fr;
+    }
+    
+    .list1 {
+        grid-area: list1;
+    }
+    
+    .form1 {
+        grid-area: form1;
+    }
+    
+    .list2 {
+        grid-area: list2;
+    }
+    
+    .form3 {
+        grid-area: form2;
+    }
+</style>

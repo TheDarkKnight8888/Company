@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let item of list$ | async" class="grid two-col">
+        <p (click)="onItemClick(item)">{{item?.firstName}} {{item?.lastName}}</p>
+        <p class="txt-center" *ngIf="isUpdated" (click)="onUpdateClick(item)"><span class="txt-white txt-bold">UPDATE</span></p>
+    </li>
+</ul>

@@ -1,0 +1,22 @@
+<div class="grid two-col">
+    <h4 class="mr-5">Список отделов</h4>
+    <h4>Детали</h4>
+</div>
+
+<div class="grid two-col">
+    <div class="mr-5" style="max-height: 50px;">
+        <app-department-list [isUpdated]="true" [list$]="departments$" (itemClick)="OnDepartmentClick($event)"></app-department-list>
+    </div>
+    <div>
+        <app-department-info [department$]="selectedDepartment$" (closeClick)="OnCloseInfoClick($event)" *ngIf="isSelectedMode"></app-department-info>
+    </div>
+</div>
+
+<style>
+    .two-col {
+        grid-template-columns: 40% 60%;
+        grid-template-rows: 100%;
+        align-content: center;
+        grid-auto-flow: column;
+    }
+</style>

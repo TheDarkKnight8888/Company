@@ -1,0 +1,50 @@
+main {
+    grid-template-areas: "header" "content";
+    grid-template-rows: 80px 100% 1fr;
+    grid-template-columns: 100%;
+}
+
+header {
+    background-color: black;
+    grid-area: header;
+}
+
+nav,
+ul {
+    height: 100%;
+    align-content: center;
+    grid-auto-flow: column;
+}
+
+li {
+    text-align: center;
+    color: white;
+    list-style-type: none;
+    background-color: gold;
+    margin-right: 2%;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+ul:first-child {
+    margin-left: 2%;
+}
+
+li:hover {
+    background-color: gray;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+article {
+    grid-area: content;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: black;
+    grid-area: footer;
+}
